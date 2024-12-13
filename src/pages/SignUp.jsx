@@ -30,7 +30,6 @@ import {
     Google as GoogleIcon,
     Facebook as FacebookIcon,
 } from "@mui/icons-material";
-import ReCAPTCHA from "react-google-recaptcha";
 import { useAuth } from "../context/AuthContext";
 import { motion } from "framer-motion";
 
@@ -427,28 +426,6 @@ const SignUp = () => {
                                 />
                             </motion.div>
 
-                            {/* ReCAPTCHA */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                animate={{ opacity: 1 }}
-                                transition={{ delay: 0.7 }}
-                            >
-                                <Box
-                                    sx={{
-                                        my: 2,
-                                        display: "flex",
-                                        justifyContent: "center",
-                                    }}
-                                >
-                                    <ReCAPTCHA
-                                        sitekey={
-                                            import.meta.env
-                                                .VITE_RECAPTCHA_SITE_KEY
-                                        }
-                                        onChange={setCaptchaValue}
-                                    />
-                                </Box>
-                            </motion.div>
 
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
