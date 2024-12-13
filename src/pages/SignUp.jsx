@@ -50,7 +50,6 @@ const SignUp = () => {
     const [error, setError] = useState("");
     const [acceptTerms, setAcceptTerms] = useState(false);
     const [showTerms, setShowTerms] = useState(false);
-    const [captchaValue, setCaptchaValue] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
     const [verificationEmailSent, setVerificationEmailSent] = useState(false);
 
@@ -93,12 +92,6 @@ const SignUp = () => {
             setError("Debes aceptar los términos y condiciones");
             return false;
         }
-
-        if (!captchaValue) {
-            setError("Por favor, completa el captcha");
-            return false;
-        }
-
         return true;
     };
 
