@@ -18,25 +18,25 @@ export const categoryService = {
             queryParams.append('orderDir', orderDir);
         }
 
-        const response = await api.get(`/categories?${queryParams}`);
+        const response = await api.get(`/api/categories?${queryParams}`);
         return response.data;
     },
 
     // Obtener una categoría específica
     getCategory: async (id) => {
-        const response = await api.get(`/categories/${id}`);
+        const response = await api.get(`/api/categories/${id}`);
         return response.data;
     },
 
     // Crear categoría (admin)
     createCategory: async (categoryData) => {
-        const response = await api.post("/categories", categoryData);
+        const response = await api.post("/api/categories", categoryData);
         return response.data;
     },
 
     // Actualizar categoría (admin)
     updateCategory: async (id, categoryData) => {
-        const response = await api.put(`/categories/${id}`, categoryData);
+        const response = await api.put(`/api/categories/${id}`, categoryData);
         return response.data;
     },
 };
