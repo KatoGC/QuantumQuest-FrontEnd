@@ -69,7 +69,7 @@ const CreateLesson = ({ courseId, onLessonCreated, existingLessons = [] }) => {
         try {
             await Promise.all(
                 updatedItems.map((lesson) =>
-                    api.put(`/api/courses/${courseId}/lessons/${lesson.id}`, {
+                    api.put(`/courses/${courseId}/lessons/${lesson.id}`, {
                         orderIndex: lesson.orderIndex,
                     })
                 )
@@ -106,7 +106,7 @@ const CreateLesson = ({ courseId, onLessonCreated, existingLessons = [] }) => {
     const handleDeleteConfirm = async () => {
         try {
             await api.delete(
-                `/api/courses/${courseId}/lessons/${deletingLesson.id}`
+                `/courses/${courseId}/lessons/${deletingLesson.id}`
             );
             onLessonCreated();
             setDeletingLesson(null);
@@ -120,7 +120,7 @@ const CreateLesson = ({ courseId, onLessonCreated, existingLessons = [] }) => {
         try {
             await Promise.all(
                 lessons.map((lesson) =>
-                    api.post(`/api/courses/${courseId}/lessons`, lesson)
+                    api.post(`/courses/${courseId}/lessons`, lesson)
                 )
             );
             setSuccess("Lecciones creadas exitosamente");

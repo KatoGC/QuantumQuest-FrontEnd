@@ -1,7 +1,7 @@
 
 export const progressService = {
     async completeLesson(courseId, lessonId) {
-        const response = await fetch(`/api/courses/${courseId}/lessons/${lessonId}/complete`, {
+        const response = await fetch(`/courses/${courseId}/lessons/${lessonId}/complete`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
@@ -16,7 +16,7 @@ export const progressService = {
     },
 
     async getCourseProgress(courseId) {
-        const response = await fetch(`/api/courses/${courseId}/progress`);
+        const response = await fetch(`/courses/${courseId}/progress`);
         return response.json();
     },
 };
