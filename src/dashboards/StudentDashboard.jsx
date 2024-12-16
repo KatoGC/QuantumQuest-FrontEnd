@@ -30,7 +30,7 @@ const StudentDashboard = () => {
 
     const loadStats = async () => {
         try {
-            const response = await api.get("/dashboard/stats/student");
+            const response = await api.get("/api/dashboard/stats/student");
             setStats(response.data.data);
         } catch (err) {
             setError("Error al cargar estadísticas");
@@ -40,7 +40,7 @@ const StudentDashboard = () => {
     };
 
     const handleCourseClick = (courseId) => {
-        navigate(`/courses/${courseId}`);
+        navigate(`/api/courses/${courseId}`);
     };
 
     if (loading) return <CircularProgress />;
