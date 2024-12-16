@@ -7,7 +7,6 @@ import {
     CircularProgress,
     Alert,
     Box,
-    Divider,
 } from "@mui/material";
 import { Book, Users, GraduationCap } from "lucide-react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
