@@ -14,10 +14,8 @@ import { useNavigate } from "react-router-dom";
 import {
     Book,
     TrendingUp,
-    School,
     Psychology,
     Timer,
-    CheckCircle,
 } from "@mui/icons-material";
 import ContactForm from "../components/ContactForm";
 import { motion } from "framer-motion";

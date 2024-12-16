@@ -1,6 +1,5 @@
 /* eslint-disable react/prop-types */
-/* eslint-disable no-unused-vars */
-import React from "react";
+
 import {
     ListItem,
     ListItemIcon,
@@ -12,8 +11,10 @@ import {
 } from "@mui/material";
 import { Play, CheckCircle } from "lucide-react";
 import { progressService } from "../services/progressService";
+import { useAuth } from "../context/AuthContext";
 
-const LessonItem = ({ lesson, index, onComplete }) => {
+const LessonItem = ({ lesson, index, onComplete, ...props }) => {
+    const { user } = useAuth();
     const handleComplete = async () => {
         try {
             console.log(
@@ -31,6 +32,7 @@ const LessonItem = ({ lesson, index, onComplete }) => {
 
     return (
         <ListItem
+            {...props}
             sx={{
                 bgcolor: lesson.completed ? "action.selected" : "transparent",
                 borderRadius: 1,
@@ -63,12 +65,11 @@ const LessonItem = ({ lesson, index, onComplete }) => {
                 }
             />
             <ListItemSecondaryAction>
-                <IconButton
-                    onClick={handleComplete}
-                    color={lesson.completed ? "success" : "default"}
-                >
-                    <CheckCircle />
-                </IconButton>
+                {user?.role === "student" && (
+                    <IconButton onClick={handleComplete}>
+                        <CheckCircle />
+                    </IconButton>
+                )}
             </ListItemSecondaryAction>
         </ListItem>
     );
