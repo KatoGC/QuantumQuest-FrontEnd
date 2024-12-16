@@ -34,7 +34,7 @@ const Profile = () => {
     const loadEnrolledCourses = async () => {
         try {
             const response = await api.get(
-                `/api/users/${user.id}/enrolled-courses`
+                `/users/${user.id}/enrolled-courses`
             );
             console.log("Enrolled courses response:", response.data);
             setEnrolledCourses(response.data.data);

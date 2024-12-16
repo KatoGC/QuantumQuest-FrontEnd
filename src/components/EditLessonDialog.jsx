@@ -21,7 +21,7 @@ const EditLessonDialog = ({ open, lesson, onClose, onUpdate, courseId }) => {
 
     const handleSubmit = async () => {
         try {
-            await api.put(`/api/courses/${courseId}/lessons/${lesson.id}`, form);
+            await api.put(`/courses/${courseId}/lessons/${lesson.id}`, form);
             onUpdate();
             onClose();
         } catch (error) {

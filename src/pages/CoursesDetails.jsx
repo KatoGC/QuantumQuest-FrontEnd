@@ -48,8 +48,8 @@ const CourseDetail = () => {
         try {
             setLoading(true);
             const [courseResponse, lessonsResponse] = await Promise.all([
-                api.get(`/api/courses/${id}`),
-                api.get(`/api/courses/${id}/lessons`),
+                api.get(`/courses/${id}`),
+                api.get(`/courses/${id}/lessons`),
             ]);
 
             const courseData = courseResponse.data.data;
@@ -63,7 +63,7 @@ const CourseDetail = () => {
 
             if (enrolled) {
                 const progressResponse = await api.get(
-                    `/api/courses/${id}/progress`
+                    `/courses/${id}/progress`
                 );
                 setUserProgress(progressResponse.data.data.progressPercentage);
             }
@@ -76,7 +76,7 @@ const CourseDetail = () => {
 
     const handleEnroll = async () => {
         try {
-            const response = await api.post(`/api/courses/${id}/enroll`);
+            const response = await api.post(`/courses/${id}/enroll`);
             if (response.data.success) {
                 setEnrolled(true);
                 loadCourseAndProgress();
@@ -90,7 +90,7 @@ const CourseDetail = () => {
 
     const handleLessonComplete = async (lessonId) => {
         try {
-            await api.post(`/api/lessons/${lessonId}/complete`);
+            await api.post(`/lessons/${lessonId}/complete`);
             const updatedLessons = course.lessons.map((lesson) =>
                 lesson.id === lessonId ? { ...lesson, completed: true } : lesson
             );
@@ -131,7 +131,7 @@ const CourseDetail = () => {
                                     variant="subtitle1"
                                     color="text.secondary"
                                 >
-                                    Por {course.creator?.name}
+                                    Por: {course.creator?.name}
                                 </Typography>
                                 <Chip
                                     label={course.level}

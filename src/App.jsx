@@ -38,14 +38,18 @@ function App() {
                             <Route path="/" element={<Home />} />
                             <Route path="/login" element={<Login />} />
                             <Route path="/signup" element={<SignUp />} />
+                            <Route path="/courses" element={<Courses />} />
+
                             <Route
                                 path="/verify-email/:token"
                                 element={<EmailVerification />}
                             />
+
                             <Route
                                 path="/verify-email-notice"
                                 element={<VerifyEmailNotice />}
                             />
+
                             {/* Rutas protegidas que requieren verificación */}
                             <Route
                                 path="/profile"
@@ -64,14 +68,7 @@ function App() {
                                     </ProtectedRoute>
                                 }
                             />
-                            <Route
-                                path="/courses"
-                                element={
-                                    <ProtectedRoute requireVerification={true}>
-                                        <Courses />
-                                    </ProtectedRoute>
-                                }
-                            />
+
                             <Route
                                 path="/courses/:id"
                                 element={

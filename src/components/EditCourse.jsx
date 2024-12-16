@@ -36,7 +36,7 @@ const EditCourse = () => {
 
     const loadCourse = async () => {
         try {
-            const response = await api.get(`/api/courses/${id}`);
+            const response = await api.get(`/courses/${id}`);
             setCourse(response.data.data);
         } catch (err) {
             setError("Error al cargar el curso");
@@ -56,9 +56,9 @@ const EditCourse = () => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await api.put(`/api/courses/${id}`, course);
+            await api.put(`/courses/${id}`, course);
             setSuccess("Curso actualizado exitosamente");
-            setTimeout(() => navigate(`/api/courses/${id}`), 2000);
+            setTimeout(() => navigate(`/courses/${id}`), 2000);
         } catch (err) {
             setError(
                 err.response?.data?.message || "Error al actualizar el curso"

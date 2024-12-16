@@ -14,7 +14,7 @@ const CourseEditContainer = () => {
 
     const loadLessons = async () => {
         try {
-            const response = await api.get(`/api/courses/${id}/lessons`);
+            const response = await api.get(`/courses/${id}/lessons`);
             setLessons(response.data.data);
         } catch (error) {
             setError("Error al cargar las lecciones");

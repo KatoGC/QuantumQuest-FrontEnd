@@ -33,7 +33,7 @@ const TeacherDashboard = () => {
 
     const loadStats = async () => {
         try {
-            const response = await api.get("/api/dashboard/stats/teacher");
+            const response = await api.get("/dashboard/stats/teacher");
             setStats(response.data.data);
         } catch (err) {
             setError("Error al cargar estadísticas");
@@ -45,7 +45,7 @@ const TeacherDashboard = () => {
     const handleCourseClick = async (courseId) => {
         try {
             const response = await api.get(
-                `/api/dashboard/course/${courseId}/details`
+                `/dashboard/course/${courseId}/details`
             );
             setCourseDetails(response.data.data);
             setSelectedCourse(courseId);

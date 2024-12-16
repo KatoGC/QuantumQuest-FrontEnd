@@ -3,7 +3,7 @@ import api from "./api";
 export const authService = {
     login: async (credentials) => {
         try {
-            const response = await api.post("/api/auth/login", credentials);
+            const response = await api.post("/auth/login", credentials);
             if (response.data.token) {
                 localStorage.setItem("token", response.data.token);
                 // También guardamos la información básica del usuario
@@ -21,7 +21,7 @@ export const authService = {
 
     register: async (userData) => {
         try {
-            const response = await api.post("/api/auth/register", userData);
+            const response = await api.post("/auth/register", userData);
             if (response.data.token) {
                 localStorage.setItem("token", response.data.token);
                 localStorage.setItem(
@@ -43,7 +43,7 @@ export const authService = {
 
     getCurrentUser: async () => {
         try {
-            const response = await api.get("/api/auth/me");
+            const response = await api.get("/auth/me");
             // Actualizamos la información del usuario en localStorage
             if (response.data.user) {
                 localStorage.setItem(
@@ -63,7 +63,7 @@ export const authService = {
 
     updateProfile: async (profileData) => {
         try {
-            const response = await api.put("/api/users/profile", profileData);
+            const response = await api.put("/users/profile", profileData);
             if (response.data.success) {
                 localStorage.setItem("user", JSON.stringify(response.data.data));
                 return response.data.data;
@@ -75,12 +75,12 @@ export const authService = {
     },
 
     verifyEmail: async (token) => {
-        const response = await api.get(`/api/auth/verify-email/${token}`);
+        const response = await api.get(`/auth/verify-email/${token}`);
         return response.data;
     },
 
     resendVerification: async (email) => {
-        const response = await api.post("/api/auth/resend-verification", { email });
+        const response = await api.post("/auth/resend-verification", { email });
         return response.data;
     },
 

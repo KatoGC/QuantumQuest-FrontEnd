@@ -30,7 +30,7 @@ const AdminDashboard = () => {
 
     const loadStats = async () => {
         try {
-            const response = await api.get("/api/dashboard/stats/admin");
+            const response = await api.get("/dashboard/stats/admin");
             setStats(response.data.data);
         } catch (err) {
             setError(

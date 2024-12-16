@@ -203,6 +203,19 @@ const SignUp = () => {
                                 dirección de email. Por favor, verifica tu
                                 correo para continuar.
                             </Alert>
+
+                            <Button
+                                component={motion.button}
+                                whileHover={{ scale: 1.05 }}
+                                whileTap={{ scale: 0.95 }}
+                                variant="contained"
+                                size="large"
+                                color="secondary"
+                                onClick={() => navigate("/login")}
+                                sx={{ py: 1.5, px: 4 }}
+                            >
+                                Comenzar Ahora
+                            </Button>
                         </motion.div>
                     ) : (
                         <Box
@@ -418,7 +431,6 @@ const SignUp = () => {
                                     }
                                 />
                             </motion.div>
-
 
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
