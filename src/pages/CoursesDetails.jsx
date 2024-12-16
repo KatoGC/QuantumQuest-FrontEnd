@@ -18,6 +18,7 @@ import { useAuth } from "../context/AuthContext";
 import { BookOpen, Clock, Award, Users, ArrowRight, Edit } from "lucide-react";
 import api from "../services/api";
 import LessonItem from "../components/LessonItem";
+import CommentSection from "../components/CommentSection";
 
 const CourseDetail = () => {
     const { id } = useParams();
@@ -90,11 +91,9 @@ const CourseDetail = () => {
 
     const handleLessonComplete = async (lessonId) => {
         try {
-            await api.post(`/lessons/${lessonId}/complete`);
-            const updatedLessons = course.lessons.map((lesson) =>
-                lesson.id === lessonId ? { ...lesson, completed: true } : lesson
+            await api.post(
+                `/courses/${course.id}/lessons/${lessonId}/complete`
             );
-            setCourse({ ...course, lessons: updatedLessons });
             await loadCourseAndProgress();
         } catch (err) {
             setError(
@@ -151,7 +150,7 @@ const CourseDetail = () => {
                             </Button>
                         )}
 
-                        {!enrolled && (
+                        {!enrolled && user?.role !== "teacher" && (
                             <Button
                                 variant="contained"
                                 onClick={handleEnroll}
@@ -186,10 +185,10 @@ const CourseDetail = () => {
                     <Tabs
                         value={tabValue}
                         onChange={(_, newValue) => setTabValue(newValue)}
-                        sx={{ borderBottom: 1, borderColor: "divider", mb: 3 }}
                     >
                         <Tab label="Descripción" />
                         <Tab label="Contenido" />
+                        <Tab label="Comentarios" />
                         {enrolled && <Tab label="Recursos" />}
                     </Tabs>
 
@@ -264,11 +263,15 @@ const CourseDetail = () => {
                             course.lessons?.map((lesson, index) => (
                                 <LessonItem
                                     key={lesson.id}
-                                    lesson={{ ...lesson, courseId: course.id }} // Incluye courseId aquí
+                                    lesson={{ ...lesson, courseId: course.id }}
                                     index={index}
                                     onComplete={handleLessonComplete}
                                 />
                             ))}
+                    </Box>
+
+                    <Box role="tabpanel" hidden={tabValue !== 2}>
+                        {tabValue === 2 && <CommentSection courseId={id} />}
                     </Box>
 
                     {enrolled && (
