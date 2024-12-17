@@ -19,6 +19,7 @@ import { BookOpen, Clock, Award, Users, ArrowRight, Edit } from "lucide-react";
 import api from "../services/api";
 import LessonItem from "../components/LessonItem";
 import CommentSection from "../components/CommentSection";
+import CourseRating from "../components/CourseRating";
 
 const CourseDetail = () => {
     const { id } = useParams();
@@ -40,6 +41,11 @@ const CourseDetail = () => {
         };
         checkPermissions();
     }, [course, user]);
+
+    const handleRatingSubmit = async (newRating) => {
+        // Opcional: Actualizar estadísticas del curso
+        loadCourseAndProgress();
+    };
 
     useEffect(() => {
         loadCourseAndProgress();
@@ -178,6 +184,16 @@ const CourseDetail = () => {
                             <LinearProgress
                                 variant="determinate"
                                 value={userProgress}
+                            />
+                        </Box>
+                    )}
+
+                    {enrolled && userProgress === 100 && (
+                        <Box mb={3}>
+                            <CourseRating
+                                courseId={id}
+                                initialRating={course.userRating}
+                                onRatingSubmit={handleRatingSubmit}
                             />
                         </Box>
                     )}
